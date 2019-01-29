@@ -16,13 +16,12 @@ public class PetDriver {
         System.out.println("\nYou got a pet! What is its name?");
         input = sc.nextLine();
 
-        Pet temp = new Pet(input);
-        player.addPet(temp);
+        player.addPet(input);
 
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("\nYear: " + Pet.year + "\nPets: " + player.getNumPets() + "/" + player.getMaxPets() + "\nMoney: $" + player.getMoney());
+            System.out.println("\nYear: " + Pet.year + "\nPets: " + player.getNumPets() + "\nMoney: $" + player.getMoney());
             System.out.println("\nWhat would you like to do?");
             System.out.println("(p): Check Pets");
             System.out.println("(b): Buy Pet");
@@ -51,23 +50,18 @@ public class PetDriver {
                 quit = true;
 
             } else if (input.equals("b")) {
-                System.out.println("A new egg costs $300.00. Purchase?" +
+                System.out.println("A new egg costs $300. Purchase?" +
                         "\n(y): Yes" +
                         "\n(n): No");
                 input = sc.nextLine();
 
-                if (input.equals("y") && (player.getNumPets() < player.getMaxPets()) && player.spend(300)) {
+                if (input.equals("y") && (player.spend(300))) {
                     System.out.println("\nYou got a pet! What is its name?");
                     input = sc.nextLine();
 
-                    temp = new Pet(input);
-                    player.addPet(temp);
+                    player.addPet(input);
 
                     System.out.println("A new pet is born, and with it, a new year.");
-
-                } else if (input.equals("y") && player.getNumPets() == player.getMaxPets()) {
-                    System.out.println("\nSorry, you have reached the pet limit. Sell a pet and try again.");
-
                 } else if (input.equals("y") && !player.spend(300)) {
                     System.out.println("\nYou don't got the cash!");
 
@@ -84,14 +78,13 @@ public class PetDriver {
                     index1 = sc.nextInt();
                     index2 = sc.nextInt();
 
-                    if (index1 != index2 && index1 <= player.getNumPets() && index2 <= player.getNumPets() && player.getNumPets() < player.getMaxPets()) {
+                    if (index1 != index2 && index1 <= player.getNumPets() && index2 <= player.getNumPets()) {
 
                         System.out.println("\nYou got a pet! What is its name?");
                         sc.nextLine();
                         input = sc.nextLine();
 
-                        temp = new Pet(input, player.getPet(index1 - 1), player.getPet(index2 - 1));
-                        player.addPet(temp);
+                        player.addPet(input, player.getPet(index1 - 1), player.getPet(index2 - 1));
 
                         System.out.println("\nA new pet is born, and with it, a new year.");
 
@@ -107,5 +100,6 @@ public class PetDriver {
                 System.out.println("Invalid input.");
             }
         }
+        sc.close();
     }
 }
