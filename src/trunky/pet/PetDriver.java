@@ -25,6 +25,7 @@ public class PetDriver {
             System.out.println("\nWhat would you like to do?");
             System.out.println("(p): Check Pets");
             System.out.println("(b): Buy Pet");
+            System.out.println("(s): Sell Pet");
             System.out.println("(c): Create Pet");
             System.out.println("(q): Quit");
             input = sc.nextLine();

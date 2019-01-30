@@ -9,6 +9,8 @@ public class Pet {
     private int atk;
     private int def;
     private int spd;
+    
+    private int value;
 
     public Pet(String name) {
         year++;
@@ -18,6 +20,8 @@ public class Pet {
         atk = (int) (Math.random() * 6) + 1;
         def = (int) (Math.random() * 6) + 1;
         spd = (int) (Math.random() * 6) + 1;
+        
+        value = calculateValue();
     }
 
     public Pet(String name, Pet parent1, Pet parent2) {
@@ -53,6 +57,7 @@ public class Pet {
 
     public String getStats() {
         String stats = name + "'s Stats:" +
+        		"\nValue: $" + value +
                 "\nBirth Year: " + birthYear +
                 "\nAge: " + getAge() +
                 "\nAtk: " + atk +
@@ -84,5 +89,33 @@ public class Pet {
 
     public int getAge() {
         return (year - birthYear);
+    }
+    
+    public int getValue() {
+    	return value;
+    }
+    
+    private int calculateValue() {
+    	int value, bonus = 0;
+    	value = 25 * (atk + def + spd);
+    	
+    	if (atk >= 6) {
+    		bonus += 20;
+    	}
+    	
+    	if (def >= 6) {
+    		bonus += 20;
+    	}
+    	
+    	if (spd >= 6) {
+    		bonus += 20;
+    	}
+    	
+    	if (bonus >= 60) {
+    		bonus += 50;
+    	}
+    	
+    	value += bonus;
+    	return value;
     }
 }

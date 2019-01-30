@@ -36,7 +36,7 @@ public class Person {
         String list = name + "'s pets: " + "\n";
 
         for (int i = 0; i < getNumPets(); i++) {
-            list += (i + 1) + ": " + pets.get(i).getName() + "\n";
+            list += (i + 1) + ": " + getPet(i).getName() + "\n";
         }
 
         return list;
@@ -64,6 +64,19 @@ public class Person {
     
     public void addMoney(int amount) {
     	money += amount;
+    }
+    
+    public Pet removePet(int index) {
+    	return pets.remove(index);
+    }
+    
+    public boolean sellPet(int index) {
+    	Pet removed = removePet(index);
+    	if (removed != null) {
+    		money += removed.getValue();
+    		return true;
+    	}
+    	return false;
     }
     
 }
